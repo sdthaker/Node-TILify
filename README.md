@@ -11,7 +11,7 @@ To install this program, first `git clone` the repository. Make sure [git](https
 - Pass in a txt file and it'll generate an html file.
 - Pass in a directory and it'll search through all the txt files in that directory and generate html files which are stored in `./til` directory.
 - Every paragraph is enclosed with `<p>` tag.
-- Every hyperlink is enclosed with `<a>` tag.
+- Every hyperlink starting with `https://` or `http://` is enclosed with `<a>` tag.
 - Every line that ends in ^ is enclosed in `<h2>` tag.
 - <ins>_Optional Feature #1_</ins>: If the first line of the text has 2 spaces after it, a `<title>` tag is added to the `<head>` and a `<h1>` tag is add at the beginning of `<body>`.
 - <ins>_Optional Feature #5_</ins>: Stylesheet is added to every html file to improve the looks of it.
