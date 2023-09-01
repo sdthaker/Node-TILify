@@ -1,6 +1,6 @@
 # Node-TILify
 
-Welcome to Node-TILify. An open source CLI software that helps you convert a text file or a directory of text files into html file(s) blazingly fast 🏃‍♂️ 💨 ⚡️. The name of the project was chosen to showcase which language/framework was used to build this tool -- _`Node`.js_, what the tool is all about -- _`TIL` - Today I Learned_, & the value that it adds to your workflow -- _Ampl`ify`ing Knowledge_.
+Welcome to Node-TILify. An open source CLI software that helps you convert a text file or a directory of text file(s) into html file(s) blazingly fast 🏃‍♂️ 💨 ⚡️. The name of the project was chosen to showcase which language/framework was used to build this tool -- _`Node`.js_, what the tool is all about -- _`TIL` - Today I Learned_, & the value that it adds to your workflow -- _Ampl`ify`ing Knowledge_.
 
 # How to use / Installation
 
