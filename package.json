@@ -1,0 +1,16 @@
+{
+  "name": "node-tilify",
+  "version": "0.1",
+  "description": "Static Site Generator for text file or a directory of text files to convert them to HTML files",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Soham Thaker",
+  "license": "MIT",
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
