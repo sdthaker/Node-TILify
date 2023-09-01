@@ -13,11 +13,11 @@ To install this program, first `git clone` the repository. Make sure [git](https
 - Every paragraph is enclosed with `<p>` tag.
 - Every hyperlink is enclosed with `<a>` tag.
 - Every line that ends in ^ is enclosed in `<h2>` tag.
-- If the first line of the text has 2 spaces after it, a `<title>` tag is added to the `<head>` and a `<h1>` tag is add at the beginning of `<body>` _Optional Feature #1_.
-- Stylesheet is added to every html file to improve the looks of it _Optional Feature #5_.
+- _Optional Feature #1_: If the first line of the text has 2 spaces after it, a `<title>` tag is added to the `<head>` and a `<h1>` tag is add at the beginning of `<body>`.
+- _Optional Feature #5_: Stylesheet is added to every html file to improve the looks of it.
 - Passing `-h` or `--help` command prints help menu.
 - Passing `-v` or `--version` command prints version and name of the tool.
-- Passing `-o` or `--output` command followed by an output directory path, stores all the generated HTML files to that directory. If no directory exists, it'll create one. It overwrites the content of the files that matched with the input file or directory of files and creats a new file if it didn't exist in the output directory _Optional Feature #2_.
+- _Optional Feature #2_: Passing `-o` or `--output` command followed by an output directory path, stores all the generated HTML files to that directory. If no directory exists, it'll create one. It overwrites the content of the files that matched with the input file or directory of files and creats a new file if it didn't exist in the output directory.
 - Name of the generated html file is the same as name of txt file.
 
 # Usages / Examples
