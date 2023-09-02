@@ -14,9 +14,6 @@ git clone https://github.com/sdthaker/Node-TILify.git
 To make sure node & npm are installed on your system, run: 
 ```bash
 node -v
-```
-& 
-```bash
 npm -v
 ```
 
@@ -28,6 +25,7 @@ node src/index.js -h
 I'd you'd like to spin up a server open a terminal inside of the cloned repository, and install the node dependencies by running (_Optional_):
 ```bash
 npm install
+npm server.js
 ``` 
 
 # Features
