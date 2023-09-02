@@ -44,8 +44,8 @@ node server.js
 
 # Usages / Examples
 
-- `node -h` / `node --help` - To print help menu
-- `node -v` / `node --version` - To print version and name of the tool
+- `node src/index.js -h` / `node src/index.js --help` - To print help menu
+- `node src/index.js -v` / `node src/index.js --version` - To print version and name of the tool
 - `node src/index.js input.txt` - To read txt file and generate html from it to be stored in `./til` directory
 - `node src/index.js ./examples` - To read txt files from a directory and generate html from it to be stored in `./til` directory
 - `node src/index.js input.txt -o collection` / `node src/index.js input.txt -output collection` - To read a txt files and generate html from it to be stored in `./collection` directory
