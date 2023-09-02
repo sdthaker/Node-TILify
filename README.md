@@ -22,7 +22,7 @@ You can now run the program from the cloned repository's terminal to see how to 
 node src/index.js -h
 ```
 
-I'd you'd like to spin up a server open a terminal inside of the cloned repository, and install the node dependencies by running (_Optional_):
+_Optional_ - If you'd like to spin up a node server, open a terminal inside of the cloned repository, and install the node dependencies & spin up the server by running:
 ```bash
 npm install
 node server.js
