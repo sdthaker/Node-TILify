@@ -4,7 +4,31 @@ Welcome to Node-TILify. An open source CLI software that helps you convert a tex
 
 # How to use / Installation
 
-To install this program, first `git clone` the repository. Make sure [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is installed on your system. Also, make sure you have latest [node](https://nodejs.org/en/download) installed on your computer. Run `node -v` & `npm -v` to make sure node & npm are installed on your system. Then open a terminal inside of the cloned repository, and run `npm install` to install the node dependencies. You can now run the program by executing `node src/index.js -h` from the cloned repository to see how to use this tool.
+Make sure [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is installed on your system. Also, make sure you have latest [node](https://nodejs.org/en/download) installed on your computer. 
+
+To install this program, first clone the repository by running: 
+```bash
+git clone https://github.com/sdthaker/Node-TILify.git
+```
+
+To make sure node & npm are installed on your system, run: 
+```bash
+node -v
+```
+& 
+```bash
+npm -v
+```
+
+You can now run the program from the cloned repository's terminal to see how to use this tool by running:
+```bash
+node src/index.js -h
+```
+
+I'd you'd like to spin up a server open a terminal inside of the cloned repository, and install the node dependencies by running (_Optional_):
+```bash
+npm install
+``` 
 
 # Features
 
