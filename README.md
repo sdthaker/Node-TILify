@@ -17,7 +17,7 @@ node -v
 npm -v
 ```
 
-You can now run the program from the cloned repository's terminal to see how to use this tool by running:
+You can now run the program from the cloned repository's terminal to see how to use this tool:
 ```bash
 node src/index.js -h
 ```
