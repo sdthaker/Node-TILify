@@ -20,7 +20,7 @@ if (command === '-v' || command === '--version') {
 //User has provided a valid help command. Output the help menu.
 else if (command === '-h' || command === '--help') {
   console.log(
-    `This program is a Static Site Generator where you pass a text file or directory of text files which converts them to HTML files.
+    `This program is a Today I Learned tool where you pass a text file or directory of text files which converts them to HTML files.
     
     It has the following commands:
     -v, --version: Outputs the name of the program & version number.
