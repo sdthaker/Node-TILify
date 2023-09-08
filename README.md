@@ -35,7 +35,7 @@ node server.js
 - Every paragraph is enclosed with `<p>` tag.
 - Every hyperlink starting with `https://` or `http://` is enclosed with `<a>` tag.
 - Every line that ends in ^ is enclosed in `<h2>` tag.
-- <ins>_Optional Feature #1_</ins>: If the first line of the text has 2 spaces after it, a `<title>` tag is added to the `<head>` and a `<h1>` tag is add at the beginning of `<body>`.
+- <ins>_Optional Feature #1_</ins>: If the first line of the text has 2 spaces after it, a `<title>` tag is added to the `<head>` and a `<h1>` tag is added at the beginning of `<body>`.
 - <ins>_Optional Feature #5_</ins>: Stylesheet is added to every html file to improve the looks of it.
 - Passing `-h` or `--help` command prints help menu.
 - Passing `-v` or `--version` command prints version and name of the tool.
