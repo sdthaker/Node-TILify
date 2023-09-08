@@ -39,7 +39,7 @@ node server.js
 - <ins>_Optional Feature #5_</ins>: Stylesheet is added to every html file to improve the looks of it.
 - Passing `-h` or `--help` command prints help menu.
 - Passing `-v` or `--version` command prints version and name of the tool.
-- <ins>_Optional Feature #2_</ins>: Passing `-o` or `--output` command followed by an output directory path, stores all the generated HTML files to that directory. If no directory exists, it'll create one. It overwrites the content of the files that matched with the input file or directory of files and creats a new file if it didn't exist in the output directory.
+- <ins>_Optional Feature #2_</ins>: Passing `-o` or `--output` command followed by an output directory path, stores all the generated HTML files to that directory. If no directory exists, it'll create one. It overwrites the content of the files that match with the input file or directory of files and creates a new file if it doesn't exist in the output directory.
 - Name of the generated html file is the same as name of txt file.
 
 # Usages / Examples
