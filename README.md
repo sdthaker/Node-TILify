@@ -25,7 +25,7 @@ node src/index.js -h
 _Optional_ - If you'd like to spin up a node server, open a terminal inside of the cloned repository, and install the node dependencies & spin up the server by running:
 ```bash
 npm install
-node server.js
+npm run start
 ``` 
 
 # Features
