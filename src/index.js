@@ -1,5 +1,5 @@
-import packageJson from '../package.json' assert { type: 'json' };
 import { sanitizeInputCommand } from './utils/helper.js';
+import fs from 'fs';
 let args = process.argv.slice(2);
 
 //User has not provided at least 1 command.
@@ -14,8 +14,20 @@ let command = args[0];
 
 //User has provided a valid version command. Output the name of the program & version number.
 if (command === '-v' || command === '--version') {
-  console.log('Name: ', packageJson.name);
-  console.log('Version: ', packageJson.version);
+  //Read JSON file
+  fs.readFile('./package.json', 'utf-8', (err, data) => {
+    if (err) {
+      console.log(
+        'An error occured while obtaining name and version of the tool: ',
+        err
+      );
+      return;
+    }
+
+    const packageJson = JSON.parse(data);
+    console.log('Name: ', packageJson.name);
+    console.log('Version: ', packageJson.version);
+  });
 }
 //User has provided a valid help command. Output the help menu.
 else if (command === '-h' || command === '--help') {
