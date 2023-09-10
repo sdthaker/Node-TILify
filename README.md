@@ -35,7 +35,7 @@ npm run start
 # Features
 
 - Pass in a txt file and it'll generate an html file.
-- Pass in a directory and it'll search through all the txt files in that directory and generate html files which are stored in `./til` directory.
+- Pass in a directory and it'll search through all the txt files in that directory and generate html files which are then stored in `./til` directory.
 - Every paragraph is enclosed with `<p>` tag.
 - Every hyperlink starting with `https://` or `http://` is enclosed with `<a>` tag.
 - Every line that ends in ^ is enclosed in `<h2>` tag.
