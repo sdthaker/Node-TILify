@@ -1,7 +1,5 @@
 import fs from 'fs';
 
-//This function sanitizes the input command and
-//calls the appropriate function to generate the HTML
 function sanitizeInputCommand(args) {
   let pathToInputFileOrDir = args[0];
   let outputCommand = args[1];
@@ -42,7 +40,6 @@ function sanitizeInputCommand(args) {
 }
 
 function sanitizeOutputCommand(outputCommand, pathToOutputDir) {
-  //Sanitize the output command.
   if (outputCommand === '-o' || outputCommand === '--output') {
     //User has not provided an output directory path
     if (!pathToOutputDir) {
