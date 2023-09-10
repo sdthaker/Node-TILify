@@ -7,7 +7,7 @@ function sanitizeInputCommand(args) {
   let outputCommand = args[1];
   let pathToOutputDir = args[2];
 
-  //Path valid input file or directory
+  //Path is valid input file or directory
   if (pathToInputFileOrDir && fs.existsSync(pathToInputFileOrDir)) {
     pathToOutputDir = sanitizeOutputCommand(outputCommand, pathToOutputDir);
 
