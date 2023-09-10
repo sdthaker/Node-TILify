@@ -4,29 +4,33 @@ Welcome to Node-TILify. An open source CLI software that helps you convert a tex
 
 # How to use / Installation
 
-Make sure [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is installed on your system. Also, make sure you have latest [node](https://nodejs.org/en/download) installed on your computer. 
+Make sure [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is installed on your system. Also, make sure you have latest [node](https://nodejs.org/en/download) installed on your computer.
 
-To install this program, first clone the repository by running: 
+To install this program, first clone the repository by running:
+
 ```bash
 git clone https://github.com/sdthaker/Node-TILify.git
 ```
 
-To make sure node & npm are installed on your system, run: 
+To make sure node & npm are installed on your system, run:
+
 ```bash
 node -v
 npm -v
 ```
 
 You can now run the program from the cloned repository's terminal to see how to use this tool:
+
 ```bash
 node src/index.js -h
 ```
 
 _Optional_ - If you'd like to spin up a node server, open a terminal inside of the cloned repository, and install the node dependencies & spin up the server by running:
+
 ```bash
 npm install
 npm run start
-``` 
+```
 
 # Features
 
@@ -48,5 +52,5 @@ npm run start
 - `node src/index.js -v` / `node src/index.js --version` - To print version and name of the tool
 - `node src/index.js input.txt` - To read txt file and generate html from it to be stored in `./til` directory
 - `node src/index.js ./examples` - To read txt files from a directory and generate html from it to be stored in `./til` directory
-- `node src/index.js input.txt -o collection` / `node src/index.js input.txt -output collection` - To read a txt files and generate html from it to be stored in `./collection` directory
+- `node src/index.js input.txt -o collection` / `node src/index.js input.txt -output collection` - To read a txt file and generate html from it to be stored in `./collection` directory
 - `node src/index.js ./examples -o collection` / `node src/index.js ./examples --output collection` - To read txt files from a directory and generate html from it to be stored in `./collection` directory
