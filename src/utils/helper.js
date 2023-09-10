@@ -1,12 +1,13 @@
 import fs from 'fs';
 
-//This function sanitizes the input command and 
+//This function sanitizes the input command and
 //calls the appropriate function to generate the HTML
 function sanitizeInputCommand(args) {
   let pathToInputFileOrDir = args[0];
   let outputCommand = args[1];
   let pathToOutputDir = args[2];
 
+  //Path valid input file or directory
   if (pathToInputFileOrDir && fs.existsSync(pathToInputFileOrDir)) {
     pathToOutputDir = sanitizeOutputCommand(outputCommand, pathToOutputDir);
 
@@ -20,14 +21,20 @@ function sanitizeInputCommand(args) {
 
       //Output dir exists, delete it
       if (pathToOutputDir === './til' && fs.existsSync(pathToOutputDir)) {
-        fs.rmdirSync(pathToOutputDir, { recursive: true });
+        fs.rmSync(pathToOutputDir, { recursive: true });
       }
 
       generateHTMLForFile(pathToInputFileOrDir, pathToOutputDir);
+      console.log(
+        `HTML file generated successfully stored at ${pathToOutputDir}!`
+      );
     }
     //Input is a directory
     else {
       generateHTMLForDir(pathToInputFileOrDir, pathToOutputDir);
+      console.log(
+        `HTML files generated successfully stored at ${pathToOutputDir}!`
+      );
     }
   } else {
     console.log('Please provide a valid input file or directory!');
@@ -158,7 +165,7 @@ function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
   }
   //Output dir exists, delete it
   if (pathToOutputDir === './til' && fs.existsSync(pathToOutputDir)) {
-    fs.rmdirSync(pathToOutputDir, { recursive: true });
+    fs.rmSync(pathToOutputDir, { recursive: true });
   }
 
   //Generate HTML for each file in the directory
