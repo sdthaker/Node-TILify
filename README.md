@@ -48,5 +48,5 @@ npm run start
 - `node src/index.js -v` / `node src/index.js --version` - To print version and name of the tool
 - `node src/index.js input.txt` - To read txt file and generate html from it to be stored in `./til` directory
 - `node src/index.js ./examples` - To read txt files from a directory and generate html from it to be stored in `./til` directory
-- `node src/index.js input.txt -o collection` / `node src/index.js input.txt -output collection` - To read a txt files and generate html from it to be stored in `./collection` directory
+- `node src/index.js input.txt -o collection` / `node src/index.js input.txt -output collection` - To read a txt file and generate html from it to be stored in `./collection` directory
 - `node src/index.js ./examples -o collection` / `node src/index.js ./examples --output collection` - To read txt files from a directory and generate html from it to be stored in `./collection` directory
