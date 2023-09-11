@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 
 function sanitizeInputCommand(args) {
   let pathToInputFileOrDir = args[0];
@@ -133,17 +134,9 @@ function generateHTMLForFile(inputFile, pathToOutputDir) {
 
   let fileName = '';
 
-  //Input file has a dir in its path, extract the file name from the path
-  if (inputFile.includes('/')) {
-    let inputFileArr = inputFile.split('/');
-    fileName = inputFileArr[inputFileArr.length - 1].split('.')[0];
-    fileName = `${fileName}.html`;
-  }
-  //Get the file name from the input file
-  else {
-    fileName = inputFile.split('.')[0];
-    fileName = `${fileName}.html`;
-  }
+  //Extract the file name from the path
+  fileName = path.basename(inputFile, '.txt');
+  fileName = `${fileName}.html`;
 
   outputHTMLToDir(pathToOutputDir, html, fileName);
 }
