@@ -92,7 +92,7 @@ function generateHTMLForFile(inputFile, pathToOutputDir) {
       <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-    ${title && `<h1>${title}</h1>`}`;
+    ${title && `<h1>${title}</h1>\n\n`}`;
 
   //Split the body by <br>
   let bodyArr = body.split('<br>');
@@ -115,10 +115,10 @@ function generateHTMLForFile(inputFile, pathToOutputDir) {
 
         //Line ends with ^, add subheader <h2> tag to it
         if (bodyArr[i].endsWith('^')) {
-          bodyArrWithPTags.push(`<h2>${bodyArr[i].slice(0, -1)}</h2>`);
+          bodyArrWithPTags.push(`\t\t<h2>${bodyArr[i].slice(0, -1)}</h2>\n\n`);
         } else {
           currentLine += bodyArr[i];
-          bodyArrWithPTags.push(`<p>${currentLine}</p>`);
+          bodyArrWithPTags.push(`\t\t<p>${currentLine}</p>\n\n`);
           currentLine = '';
         }
       }
