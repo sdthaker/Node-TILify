@@ -92,7 +92,7 @@ function generateHTMLForFile(inputFile, pathToOutputDir) {
       <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-    ${title && `<h1>${title}</h1>\n\n`}`;
+    ${title && `\t<h1>${title}</h1>\n\n`}`;
 
   //Split the body by <br>
   let bodyArr = body.split('<br>');
