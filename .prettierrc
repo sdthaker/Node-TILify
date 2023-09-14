@@ -10,7 +10,7 @@
   "printWidth": 80,
   "semi": true,
   "singleAttributePerLine": true,
-  "singleQuote": false,
+  "singleQuote": true,
   "trailingComma": "es5",
   "withNodeModules": false
 }
