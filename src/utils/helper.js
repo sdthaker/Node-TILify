@@ -13,8 +13,11 @@ function sanitizeInputCommand(args) {
     //Input is a file
     if (fs.lstatSync(pathToInputFileOrDir).isFile()) {
       //Input file doesnt end in .txt
-      if (!pathToInputFileOrDir.endsWith('.txt')) {
-        console.log('Input file must end with .txt extension!');
+      if (
+        !pathToInputFileOrDir.endsWith('.txt') ||
+        !pathToInputFileOrDir.endsWith('.md')
+      ) {
+        console.log('Input file must end with .txt or .md extension!');
         process.exit(1);
       }
 
@@ -146,7 +149,9 @@ function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
   let files = fs.readdirSync(pathToInputDir);
 
   //Filter the files to only include .txt files
-  let txtFiles = files.filter((file) => file.endsWith('.txt'));
+  let txtFiles = files.filter(
+    (file) => file.endsWith('.txt') || file.endsWith('.md')
+  );
 
   //No .txt files in the directory, exit execution
   if (txtFiles.length === 0) {
