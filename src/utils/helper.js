@@ -153,7 +153,88 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
   outputHTMLToDir(pathToOutputDir, html, fileName);
 }
 
-function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {}
+function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
+  let title = '';
+  let body = '';
+
+  //2nd and 3rd line are empty, the first line is the title and the rest is the body
+  if (lines[1] === '' && lines[2] === '') {
+    title = lines[0];
+    body = lines.slice(3).join('<br>');
+  }
+  //There is no title, everything is body content
+  else {
+    body = lines.join('<br>');
+  }
+
+  let html = `<!DOCTYPE html>
+    <html lang="en-us">
+    <head>
+      <meta charset="utf-8">
+      <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css>
+      ${title && `<title>${title}</title>`}
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+    ${title && `\t<h1>${title}</h1>\n\n`}`;
+
+  //Split the body by <br>
+  let bodyArr = body.split('<br>');
+  let currentLine = '';
+  let bodyArrWithPTags = [];
+  //Regex to match http links
+  const mdLinkGroupRegex = /\[([^\]]+)\]\(([^\)]+)\)/;
+
+  // Loop through bodyArr and add <p> tags to each line
+  for (let i = 0; i < bodyArr.length; i++) {
+    //Line is not empty, add <p> tag to it or append line to currentLine
+    if (bodyArr[i] !== '') {
+      //The next line is empty or the current line is the last line in the array, add <p> tag to it
+      if (i + 1 === bodyArr.length || bodyArr[i + 1] === '') {
+        const mdLinks = bodyArr[i].match(new RegExp(mdLinkGroupRegex, 'g'));
+
+        if (mdLinks && mdLinks.length > 0) {
+          mdLinks.forEach((link) => {
+            const linkGroup = link.match(mdLinkGroupRegex);
+
+            if (linkGroup) {
+              const [mdLink, mdText, mdURL] = linkGroup;
+              //Replace http links with <a> tags
+              bodyArr[i] = bodyArr[i].replace(
+                mdLink,
+                `<a href="${mdURL}" target="_blank">${mdText}</a>`
+              );
+            }
+          });
+        }
+
+        //Line ends with ^, add subheader <h2> tag to it
+        if (bodyArr[i].endsWith('^')) {
+          bodyArrWithPTags.push(`\t\t<h2>${bodyArr[i].slice(0, -1)}</h2>\n\n`);
+        } else {
+          currentLine += bodyArr[i];
+          bodyArrWithPTags.push(`\t\t<p>${currentLine}</p>\n\n`);
+          currentLine = '';
+        }
+      }
+      //Next line is not empty, add the current line to currentLine
+      else {
+        currentLine += bodyArr[i];
+      }
+    }
+  }
+  //Join the array with no delimiter
+  html += bodyArrWithPTags.join('');
+  html += `</body></html>`;
+
+  let fileName = '';
+
+  //Extract the file name from the path
+  fileName = path.basename(inputFile, '.md');
+  fileName = `${fileName}.html`;
+
+  outputHTMLToDir(pathToOutputDir, html, fileName);
+}
 
 function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
   //Read the directory

@@ -45,6 +45,8 @@ npm run start
 - Passing `-v` or `--version` command prints version and name of the tool.
 - <ins>_Optional Feature #2_</ins>: Passing `-o` or `--output` command followed by an output directory path, stores all the generated HTML files to that directory. If no directory exists, it'll create one. It overwrites the content of the files that match with the input file or directory of files and creates a new file if it doesn't exist in the output directory.
 - Name of the generated html file is the same as name of txt file.
+- Supports Markdown syntax.
+- Auto-detect and convert Markdown syntax to HTML.
 
 # Usages / Examples
 
@@ -57,15 +59,17 @@ npm run start
 
 # Usages / Examples (with Output)
 
- To generate multiple HTML files from a directory with your preferred output directory:
+To generate multiple HTML files from a directory with your preferred output directory:
 
- Command Line:
+Command Line:
+
 ```bash
 sohamthaker@Sohams-MacBook-Pro Node-TILify % node src/index.js examples -o output
 HTML files generated successfully stored at output!
 ```
 
 partial output of `examples/Kubernetes101.txt`
+
 ```bash
 Kubernetes 101
 
@@ -86,6 +90,7 @@ Kubernetes is a container orchestration system: in other words, it provides the 
 ```
 
 partial output of `output/Kubernetes101.html`
+
 ```bash
 <!DOCTYPE html>
     <html lang="en-us">
@@ -112,4 +117,3 @@ partial output of `output/Kubernetes101.html`
 
      <p>Kubernetes is a container orchestration system: in other words, it provides the necessary components for configuring, deploying and scaling images that are built with Docker.</p>
 ```
-
