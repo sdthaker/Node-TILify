@@ -12,7 +12,7 @@ function sanitizeInputCommand(args) {
 
     //Input is a file
     if (fs.lstatSync(pathToInputFileOrDir).isFile()) {
-      //Input file doesnt end in .txt
+      //Input file doesnt end in .txt or .md
       if (
         !pathToInputFileOrDir.endsWith('.txt') ||
         !pathToInputFileOrDir.endsWith('.md')
@@ -148,7 +148,7 @@ function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
   //Read the directory
   let files = fs.readdirSync(pathToInputDir);
 
-  //Filter the files to only include .txt files
+  //Filter the files to only include .txt or .md files
   let txtFiles = files.filter(
     (file) => file.endsWith('.txt') || file.endsWith('.md')
   );
