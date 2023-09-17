@@ -153,7 +153,7 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
   outputHTMLToDir(pathToOutputDir, html, fileName);
 }
 
-function generateHTMLForMdFile(pathToInputFile, pathToOutputDir, lines) {}
+function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {}
 
 function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
   //Read the directory
