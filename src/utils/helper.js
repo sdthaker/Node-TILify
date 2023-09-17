@@ -196,7 +196,6 @@ function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
         if (mdLinks && mdLinks.length > 0) {
           mdLinks.forEach((link) => {
             const linkGroup = link.match(mdLinkGroupRegex);
-            const [mdLink, mdText, mdURL] = linkGroup;
 
             if (linkGroup) {
               const [mdLink, mdText, mdURL] = linkGroup;
