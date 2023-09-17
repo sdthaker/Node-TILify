@@ -14,7 +14,7 @@ function sanitizeInputCommand(args) {
     if (fs.lstatSync(pathToInputFileOrDir).isFile()) {
       //Input file doesnt end in .txt or .md
       if (
-        !pathToInputFileOrDir.endsWith('.txt') ||
+        !pathToInputFileOrDir.endsWith('.txt') &&
         !pathToInputFileOrDir.endsWith('.md')
       ) {
         console.log('Input file must end with .txt or .md extension!');
@@ -73,6 +73,15 @@ function generateHTMLForFile(inputFile, pathToOutputDir) {
   let data = fs.readFileSync(inputFile, 'utf-8');
   //Split the file by new line
   let lines = data.split('\n');
+
+  if (inputFile.endsWith('.md')) {
+    generateHTMLForMdFile(inputFile, pathToOutputDir, lines);
+  } else {
+    generateHTMLForTxtFile(inputFile, pathToOutputDir, lines);
+  }
+}
+
+function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
   let title = '';
   let body = '';
 
@@ -143,6 +152,8 @@ function generateHTMLForFile(inputFile, pathToOutputDir) {
 
   outputHTMLToDir(pathToOutputDir, html, fileName);
 }
+
+function generateHTMLForMdFile(pathToInputFile, pathToOutputDir, lines) {}
 
 function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
   //Read the directory
