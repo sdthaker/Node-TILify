@@ -7,7 +7,7 @@ if (args.length === 0) {
   console.log(
     'Please provide a command! Run the program with --help / -h for more information.'
   );
-  process.exit(1);
+  process.exit(-1);
 }
 
 let command = args[0];
@@ -21,13 +21,14 @@ if (command === '-v' || command === '--version') {
         'An error occured while obtaining name and version of the tool: ',
         err
       );
-      return;
+      process.exit(-1);
     }
 
     const packageJson = JSON.parse(data);
     console.log('Name: ', packageJson.name);
     console.log('Version: ', packageJson.version);
   });
+  process.exit(0);
 }
 //User has provided a valid help command. Output the help menu.
 else if (command === '-h' || command === '--help') {
@@ -46,6 +47,7 @@ else if (command === '-h' || command === '--help') {
     node src/index.js ./path/to/directory -o ./path/to/output
     `
   );
+  process.exit(0);
 }
 //User has provided a valid input command. Sanitize the input command.
 else {

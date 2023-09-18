@@ -13,12 +13,13 @@ function sanitizeInputCommand(args) {
     //Input is a file
     if (fs.lstatSync(pathToInputFileOrDir).isFile()) {
       //Input file doesnt end in .txt or .md
+
       if (
         !pathToInputFileOrDir.endsWith('.txt') &&
         !pathToInputFileOrDir.endsWith('.md')
       ) {
         console.log('Input file must end with .txt or .md extension!');
-        process.exit(1);
+        process.exit(-1);
       }
 
       //Output dir exists, delete it
@@ -30,6 +31,7 @@ function sanitizeInputCommand(args) {
       console.log(
         `HTML file generated successfully stored at ${pathToOutputDir}!`
       );
+      process.exit(0);
     }
     //Input is a directory
     else {
@@ -37,9 +39,11 @@ function sanitizeInputCommand(args) {
       console.log(
         `HTML files generated successfully stored at ${pathToOutputDir}!`
       );
+      process.exit(0);
     }
   } else {
     console.log('Please provide a valid input file or directory!');
+    process.exit(-1);
   }
 }
 
@@ -48,16 +52,18 @@ function sanitizeOutputCommand(outputCommand, pathToOutputDir) {
     //User has not provided an output directory path
     if (!pathToOutputDir) {
       console.log('Please provide a path to output directory!');
-      process.exit(1);
+      process.exit(-1);
     }
+
     //User has provided an output directory path but it is not a directory
     else if (
       fs.existsSync(pathToOutputDir) &&
       !fs.lstatSync(pathToOutputDir).isDirectory()
     ) {
       console.log('Please provide a valid output directory!');
-      process.exit(1);
+      process.exit(-1);
     }
+
     //User has provided an output directory path but it does not exist
     else if (!fs.existsSync(pathToOutputDir)) {
       fs.mkdirSync(pathToOutputDir);
@@ -248,8 +254,9 @@ function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
   //No .txt files in the directory, exit execution
   if (txtFiles.length === 0) {
     console.log('No text files found in directory!');
-    process.exit(1);
+    process.exit(-1);
   }
+
   //Output dir exists, delete it
   if (pathToOutputDir === './til' && fs.existsSync(pathToOutputDir)) {
     fs.rmSync(pathToOutputDir, { recursive: true });
@@ -266,6 +273,7 @@ function outputHTMLToDir(pathToOutputDir, htmlContent, fileName) {
   if (!fs.existsSync(pathToOutputDir)) {
     fs.mkdirSync(pathToOutputDir);
   }
+
   //Write the HTML content to the output dir
   fs.writeFileSync(`${pathToOutputDir}/${fileName}`, htmlContent);
 }
