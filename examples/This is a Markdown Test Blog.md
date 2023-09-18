@@ -1,5 +1,4 @@
-first paragraph with title.
-
+first paragraph.
 
 second paragraph.
 should be same as 2.
@@ -13,3 +12,15 @@ fourth paragraph has a link in the end of the paragraph [Github](https://github.
 [Github](https://github.com/) sixth paragraph has lots of [Github](https://github.com/) links within itself [Github](https://github.com/)
 
 [Github](https://github.com/)
+
+There is horizontal line below this
+---
+
+---
+There is horizontal line above this
+
+---
+
+There is horizontal line below this
+---
+There is horizontal line above this

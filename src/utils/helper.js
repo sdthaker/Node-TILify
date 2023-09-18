@@ -115,7 +115,7 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
   //Split the body by <br>
   let bodyArr = body.split('<br>');
   let currentLine = '';
-  let bodyArrWithPTags = [];
+  let bodyArrWithHTMLTags = [];
   //Regex to match http links
   const httpRegex = /(https?:\/\/\S+)/g;
 
@@ -133,10 +133,12 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
 
         //Line ends with ^, add subheader <h2> tag to it
         if (bodyArr[i].endsWith('^')) {
-          bodyArrWithPTags.push(`\t\t<h2>${bodyArr[i].slice(0, -1)}</h2>\n\n`);
+          bodyArrWithHTMLTags.push(
+            `\t\t<h2>${bodyArr[i].slice(0, -1)}</h2>\n\n`
+          );
         } else {
           currentLine += bodyArr[i];
-          bodyArrWithPTags.push(`\t\t<p>${currentLine}</p>\n\n`);
+          bodyArrWithHTMLTags.push(`\t\t<p>${currentLine}</p>\n\n`);
           currentLine = '';
         }
       }
@@ -147,7 +149,7 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
     }
   }
   //Join the array with no delimiter
-  html += bodyArrWithPTags.join('');
+  html += bodyArrWithHTMLTags.join('');
   html += `</body></html>`;
 
   let fileName = '';
@@ -160,34 +162,22 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
 }
 
 function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
-  let title = '';
-  let body = '';
-
-  //2nd and 3rd line are empty, the first line is the title and the rest is the body
-  if (lines[1] === '' && lines[2] === '') {
-    title = lines[0];
-    body = lines.slice(3).join('<br>');
-  }
-  //There is no title, everything is body content
-  else {
-    body = lines.join('<br>');
-  }
+  let body = lines.join('<br>');
 
   let html = `<!DOCTYPE html>
     <html lang="en-us">
     <head>
       <meta charset="utf-8">
       <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css>
-      ${title && `<title>${title}</title>`}
       <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-    ${title && `\t<h1>${title}</h1>\n\n`}`;
+    `;
 
   //Split the body by <br>
   let bodyArr = body.split('<br>');
   let currentLine = '';
-  let bodyArrWithPTags = [];
+  let bodyArrWithHTMLTags = [];
   //Regex to match http links
   const mdLinkGroupRegex = /\[([^\]]+)\]\(([^\)]+)\)/;
 
@@ -195,8 +185,14 @@ function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
   for (let i = 0; i < bodyArr.length; i++) {
     //Line is not empty, add <p> tag to it or append line to currentLine
     if (bodyArr[i] !== '') {
-      //The next line is empty or the current line is the last line in the array, add <p> tag to it
-      if (i + 1 === bodyArr.length || bodyArr[i + 1] === '') {
+      //The next line is empty or
+      //current line is the last line in the array or
+      //current line is horizontal line, create <p> tag
+      if (
+        i + 1 === bodyArr.length ||
+        bodyArr[i + 1] === '' ||
+        bodyArr[i] === '---'
+      ) {
         const mdLinks = bodyArr[i].match(new RegExp(mdLinkGroupRegex, 'g'));
 
         if (mdLinks && mdLinks.length > 0) {
@@ -214,24 +210,30 @@ function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
           });
         }
 
-        //Line ends with ^, add subheader <h2> tag to it
-        if (bodyArr[i].endsWith('^')) {
-          bodyArrWithPTags.push(`\t\t<h2>${bodyArr[i].slice(0, -1)}</h2>\n\n`);
-        } else {
+        // Line contains ---, convert it to <hr> tag
+        if (bodyArr[i] !== '---') {
           currentLine += bodyArr[i];
-          bodyArrWithPTags.push(`\t\t<p>${currentLine}</p>\n\n`);
-          currentLine = '';
+          bodyArrWithHTMLTags.push(`\t\t<p>${currentLine}</p>\n\n`);
+        } else {
+          currentLine &&
+            bodyArrWithHTMLTags.push(`\t\t<p>${currentLine}</p>\n\n`);
+          bodyArrWithHTMLTags.push(`\t\t<hr>\n\n`);
         }
+        currentLine = '';
       }
       //Next line is not empty, add the current line to currentLine
       else {
-        currentLine += bodyArr[i];
+        if (bodyArr[i] === '---') {
+          bodyArrWithHTMLTags.push(`\t\t<hr>\n\n`);
+        } else {
+          currentLine += bodyArr[i];
+        }
       }
     }
   }
   //Join the array with no delimiter
-  html += bodyArrWithPTags.join('');
-  html += `</body></html>`;
+  html += bodyArrWithHTMLTags.join('');
+  html += `\t</body>\n\t</html>`;
 
   let fileName = '';
 
