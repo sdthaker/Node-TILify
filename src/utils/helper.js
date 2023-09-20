@@ -18,7 +18,7 @@ function sanitizeInputCommand(args) {
         !pathToInputFileOrDir.endsWith('.txt') &&
         !pathToInputFileOrDir.endsWith('.md')
       ) {
-        console.log('Input file must end with .txt or .md extension!');
+        console.error('Input file must end with .txt or .md extension!');
         process.exit(-1);
       }
 
@@ -42,7 +42,7 @@ function sanitizeInputCommand(args) {
       process.exit(0);
     }
   } else {
-    console.log('Please provide a valid input file or directory!');
+    console.error('Please provide a valid input file or directory!');
     process.exit(-1);
   }
 }
@@ -51,7 +51,7 @@ function sanitizeOutputCommand(outputCommand, pathToOutputDir) {
   if (outputCommand === '-o' || outputCommand === '--output') {
     //User has not provided an output directory path
     if (!pathToOutputDir) {
-      console.log('Please provide a path to output directory!');
+      console.error('Please provide a path to output directory!');
       process.exit(-1);
     }
 
@@ -60,7 +60,7 @@ function sanitizeOutputCommand(outputCommand, pathToOutputDir) {
       fs.existsSync(pathToOutputDir) &&
       !fs.lstatSync(pathToOutputDir).isDirectory()
     ) {
-      console.log('Please provide a valid output directory!');
+      console.error('Please provide a valid output directory!');
       process.exit(-1);
     }
 
@@ -78,7 +78,7 @@ function generateHTMLForFile(inputFile, pathToOutputDir) {
   //Read the file
   let data = fs.readFileSync(inputFile, 'utf-8');
   //Split the file by new line
-  let lines = data.split('\n');
+  let lines = data.split(/\r?\n/);
 
   if (inputFile.endsWith('.md')) {
     generateHTMLForMdFile(inputFile, pathToOutputDir, lines);
@@ -255,7 +255,7 @@ function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
 
   //No .txt files in the directory, exit execution
   if (txtFiles.length === 0) {
-    console.log('No text files found in directory!');
+    console.error('No text files found in directory!');
     process.exit(-1);
   }
 
@@ -273,7 +273,7 @@ function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
 function outputHTMLToDir(pathToOutputDir, htmlContent, fileName) {
   //Output dir does not exist, create it
   if (!fs.existsSync(pathToOutputDir)) {
-    fs.mkdirSync(pathToOutputDir);
+    fs.mkdirSync(pathToOutputDir, { recursive: true });
   }
 
   //Write the HTML content to the output dir

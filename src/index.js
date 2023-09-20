@@ -4,7 +4,7 @@ let args = process.argv.slice(2);
 
 //User has not provided at least 1 command.
 if (args.length === 0) {
-  console.log(
+  console.error(
     'Please provide a command! Run the program with --help / -h for more information.'
   );
   process.exit(-1);
@@ -17,7 +17,7 @@ if (command === '-v' || command === '--version') {
   //Read JSON file
   fs.readFile('./package.json', 'utf-8', (err, data) => {
     if (err) {
-      console.log(
+      console.error(
         'An error occured while obtaining name and version of the tool: ',
         err
       );
