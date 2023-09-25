@@ -2,7 +2,7 @@ import { sanitizeInputCommand } from './utils/helper.js';
 import fs from 'fs';
 let args = process.argv.slice(2);
 
-//User has not provided at least 1 command.
+// User has not provided at least 1 command.
 if (args.length === 0) {
   console.error(
     'Please provide a command! Run the program with --help / -h for more information.'
@@ -12,9 +12,9 @@ if (args.length === 0) {
 
 let command = args[0];
 
-//User has provided a valid version command. Output the name of the program & version number.
+// User has provided a valid version command. Output the name of the program & version number.
 if (command === '-v' || command === '--version') {
-  //Read JSON file
+  // Read JSON file
   fs.readFile('./package.json', 'utf-8', (err, data) => {
     if (err) {
       console.error(
@@ -30,7 +30,7 @@ if (command === '-v' || command === '--version') {
   });
   process.exit(0);
 }
-//User has provided a valid help command. Output the help menu.
+// User has provided a valid help command. Output the help menu.
 else if (command === '-h' || command === '--help') {
   console.log(
     `This program is a Today I Learned tool where you pass a text file or directory of text files which converts them to HTML files.
@@ -49,7 +49,7 @@ else if (command === '-h' || command === '--help') {
   );
   process.exit(0);
 }
-//User has provided a valid input command. Sanitize the input command.
+// User has provided a valid input command. Sanitize the input command.
 else {
   sanitizeInputCommand(args);
 }
