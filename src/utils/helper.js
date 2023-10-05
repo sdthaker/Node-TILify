@@ -25,8 +25,8 @@ function sanitizeInputCommand(args) {
 
     // Input is a file
     if (fs.lstatSync(pathToInputFileOrDir).isFile()) {
+      
       // Input file doesnt end in .txt or .md
-
       if (
         !pathToInputFileOrDir.endsWith('.txt') &&
         !pathToInputFileOrDir.endsWith('.md')
@@ -67,7 +67,6 @@ function sanitizeOutputCommand(outputCommand, pathToOutputDir) {
       console.error('Please provide a path to output directory!');
       process.exit(-1);
     }
-
     // User has provided an output directory path but it is not a directory
     else if (
       fs.existsSync(pathToOutputDir) &&
@@ -76,7 +75,6 @@ function sanitizeOutputCommand(outputCommand, pathToOutputDir) {
       console.error('Please provide a valid output directory!');
       process.exit(-1);
     }
-
     // User has provided an output directory path but it does not exist
     else if (!fs.existsSync(pathToOutputDir)) {
       fs.mkdirSync(pathToOutputDir);
@@ -119,7 +117,7 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
     <body>
     ${title && `\t<h1>${title}</h1>\n\n`}`;
 
-  // Split the body by <br>
+  // Split the body by <br> tag
   let bodyArr = body.split('<br>');
   let currentLine = '';
   let bodyArrWithHTMLTags = [];
