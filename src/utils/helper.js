@@ -25,7 +25,6 @@ function sanitizeInputCommand(args) {
 
     // Input is a file
     if (fs.lstatSync(pathToInputFileOrDir).isFile()) {
-      
       // Input file doesnt end in .txt or .md
       if (
         !pathToInputFileOrDir.endsWith('.txt') &&
@@ -105,11 +104,11 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
   // 2nd and 3rd line are empty, the first line is the title and the rest is the body
   if (lines[1] === '' && lines[2] === '') {
     title = lines[0];
-    body = lines.slice(3).join('<br>');
+    body = lines.slice(3);
   }
   // There is no title, everything is body content
   else {
-    body = lines.join('<br>');
+    body = lines;
   }
 
   let html = `<!DOCTYPE html>
@@ -118,7 +117,7 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
     ${title && `\t<h1>${title}</h1>\n\n`}`;
 
   // Split the body by <br> tag
-  let bodyArr = body.split('<br>');
+  let bodyArr = body;
   let currentLine = '';
   let bodyArrWithHTMLTags = [];
   // Regex to match http links
@@ -163,15 +162,13 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
 }
 
 function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
-  let body = lines.join('<br>');
-
   let html = `<!DOCTYPE html>
     <html lang="en-us"> ${generateHTMLHeadForFile('md')}
     <body>
     `;
 
   // Split the body by <br>
-  let bodyArr = body.split('<br>');
+  let bodyArr = lines;
   let currentLine = '';
   let bodyArrWithHTMLTags = [];
   // Regex to match http links
