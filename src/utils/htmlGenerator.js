@@ -1,6 +1,5 @@
 import {extractFileNameFromPath, outputHTMLToDir } from './helper.js';
 import fs from 'fs';
-import path from 'path';
 
 function generateHTMLForFile(inputFile, pathToOutputDir) {
   // Read the file
