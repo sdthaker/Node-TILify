@@ -115,13 +115,7 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
   }
 
   let html = `<!DOCTYPE html>
-    <html lang="en-us">
-    <head>
-      <meta charset="utf-8">
-      <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css>
-      ${title && `<title>${title}</title>`}
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
+    <html lang="en-us"> ${generateHTMLHeadForFile('txt', title)}
     <body>
     ${title && `\t<h1>${title}</h1>\n\n`}`;
 
@@ -165,11 +159,7 @@ function generateHTMLForTxtFile(inputFile, pathToOutputDir, lines) {
   html += bodyArrWithHTMLTags.join('');
   html += `</body></html>`;
 
-  let fileName = '';
-
-  // Extract the file name from the path
-  fileName = path.basename(inputFile, '.txt');
-  fileName = `${fileName}.html`;
+  let fileName = extractFileNameFromPath(inputFile, 'txt');
 
   outputHTMLToDir(pathToOutputDir, html, fileName);
 }
@@ -178,12 +168,7 @@ function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
   let body = lines.join('<br>');
 
   let html = `<!DOCTYPE html>
-    <html lang="en-us">
-    <head>
-      <meta charset="utf-8">
-      <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
+    <html lang="en-us"> ${generateHTMLHeadForFile('md')}
     <body>
     `;
 
@@ -248,13 +233,42 @@ function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
   html += bodyArrWithHTMLTags.join('');
   html += `\t</body>\n\t</html>`;
 
+  let fileName = extractFileNameFromPath(inputFile, 'md');
+
+  outputHTMLToDir(pathToOutputDir, html, fileName);
+}
+
+function extractFileNameFromPath(pathToFile, fileType) {
   let fileName = '';
 
   // Extract the file name from the path
-  fileName = path.basename(inputFile, '.md');
+  fileName = path.basename(pathToFile, `.${fileType}`);
   fileName = `${fileName}.html`;
 
-  outputHTMLToDir(pathToOutputDir, html, fileName);
+  return fileName;
+}
+
+function generateHTMLHeadForFile(fileType, title) {
+  let titleTag = title ? `<title>${title}</title>` : '';
+  switch (fileType) {
+    case 'txt':
+      return `
+        <head>
+          <meta charset="utf-8">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+          ${titleTag}
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>`;
+    case 'md':
+      return `
+        <head>
+          <meta charset="utf-8">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>`;
+    default:
+      return '';
+  }
 }
 
 function generateHTMLForDir(pathToInputDir, pathToOutputDir) {
