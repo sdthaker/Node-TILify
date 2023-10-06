@@ -24,9 +24,6 @@ function sanitizeInputCommand(args) {
   let outputCommand = args[1];
   let pathToOutputDir = args[2];
 
-  // Check if input file or directory exists and if not, create it
-  checkAndCreateDirectory(pathToInputFileOrDir);
-  checkAndCreateDirectory(pathToOutputDir);
 
   // Path is valid input file or directory
   if (pathToInputFileOrDir && fs.existsSync(pathToInputFileOrDir)) {
