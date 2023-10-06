@@ -15,10 +15,6 @@ if (configFlagIndex !== -1 && args[configFlagIndex + 1]) {
     
     const config = readAndParseTomlConfig(configFile);
     
-    // Assuming the TOML format to be:
-    // input = "./path/to/input"
-    // output = "./path/to/output"
-    
     const inputPath = config.input || '';
     const outputPath = config.output || './til';
     const lang = config.lang || 'en';

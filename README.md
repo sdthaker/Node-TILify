@@ -47,6 +47,7 @@ npm run start
 - Name of the generated html file is the same as name of txt file.
 - Supports Markdown syntax.
 - Auto-detect and convert Markdown syntax to HTML.
+- **TOML Configuration**: Instead of repeatedly passing in command-line arguments, you can now set your preferences in a TOML configuration file. Use the `-c` or `--config` flags followed by the path to your TOML configuration file.
 
 # Usages / Examples
 
@@ -56,6 +57,7 @@ npm run start
 - `node src/index.js ./examples` - To read txt files from a directory and generate html from it to be stored in `./til` directory
 - `node src/index.js input.txt -o collection` / `node src/index.js input.txt -output collection` - To read a txt file and generate html from it to be stored in `./collection` directory
 - `node src/index.js ./examples -o collection` / `node src/index.js ./examples --output collection` - To read txt files from a directory and generate html from it to be stored in `./collection` directory
+- `node src/index.js --config path_to_your_config.toml` - To utilize your configuration file settings for conversion.
 
 # Usages / Examples (with Output)
 
@@ -116,4 +118,25 @@ partial output of `output/Kubernetes101.html`
      <p>I thought Kubernetes was just a different way to build container images like you can with Docker… not so!</p>
 
      <p>Kubernetes is a container orchestration system: in other words, it provides the necessary components for configuring, deploying and scaling images that are built with Docker.</p>
+```
+## Configuration Using TOML
+
+Now with TOML configuration support, streamline your repetitive tasks by setting your configurations just once!
+
+### How to Use
+
+1. Create a `.toml` file with your desired configuration. Here's an example format:
+
+```toml
+# This is a sample TOML configuration file
+input = "./src"
+
+# Output directory where generated files will be saved
+output = "./build"
+
+# Stylesheet URL
+stylesheet = "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+
+# Language setting
+lang = "fr"
 ```
