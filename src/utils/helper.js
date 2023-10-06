@@ -1,10 +1,32 @@
 import fs from 'fs';
 import path from 'path';
+import toml from 'toml';
+
+function readAndParseTomlConfig(filePath) {
+    try {
+        const content = fs.readFileSync(filePath, 'utf-8');
+        return toml.parse(content);
+    } catch (err) {
+        console.error('Error reading or parsing TOML file:', err);
+        process.exit(-1);
+    }
+}
+
+//Checking if the directory exists and if not, create it
+function checkAndCreateDirectory(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
 
 function sanitizeInputCommand(args) {
   let pathToInputFileOrDir = args[0];
   let outputCommand = args[1];
   let pathToOutputDir = args[2];
+
+  // Check if input file or directory exists and if not, create it
+  checkAndCreateDirectory(pathToInputFileOrDir);
+  checkAndCreateDirectory(pathToOutputDir);
 
   // Path is valid input file or directory
   if (pathToInputFileOrDir && fs.existsSync(pathToInputFileOrDir)) {
@@ -280,4 +302,4 @@ function outputHTMLToDir(pathToOutputDir, htmlContent, fileName) {
   fs.writeFileSync(`${pathToOutputDir}/${fileName}`, htmlContent);
 }
 
-export { sanitizeInputCommand };
+export { sanitizeInputCommand , readAndParseTomlConfig};

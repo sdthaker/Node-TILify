@@ -1,6 +1,32 @@
-import { sanitizeInputCommand } from './utils/helper.js';
+import { sanitizeInputCommand , readAndParseTomlConfig} from './utils/helper.js';
 import fs from 'fs';
 let args = process.argv.slice(2);
+
+// Check for config flag
+const configFlagIndex = args.findIndex(arg => arg === '-c' || arg === '--config');
+
+if (configFlagIndex !== -1 && args[configFlagIndex + 1]) {
+    const configFile = args[configFlagIndex + 1];
+    
+    if (!fs.existsSync(configFile)) {
+        console.error('Configuration file not found:', configFile);
+        process.exit(-1);
+    }
+    
+    const config = readAndParseTomlConfig(configFile);
+    
+    // Assuming the TOML format to be:
+    // input = "./path/to/input"
+    // output = "./path/to/output"
+    
+    const inputPath = config.input || '';
+    const outputPath = config.output || './til';
+    const lang = config.lang || 'en';
+    const version = config.version || '1.0.0';
+    sanitizeInputCommand([inputPath, '-o', outputPath]);
+    process.exit(0);
+}
+
 
 // User has not provided at least 1 command.
 if (args.length === 0) {
