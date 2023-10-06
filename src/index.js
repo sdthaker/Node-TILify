@@ -2,7 +2,8 @@ import { sanitizeInputCommand , readAndParseTomlConfig} from './utils/helper.js'
 import fs from 'fs';
 let args = process.argv.slice(2);
 
-// Check for config flag
+// This code checks if the user has provided a configuration flag (-c or --config) to specify a TOML file path.
+// If the flag is provided and the file exists, it reads the configuration, processes the input accordingly, and then exits.
 const configFlagIndex = args.findIndex(arg => arg === '-c' || arg === '--config');
 
 if (configFlagIndex !== -1 && args[configFlagIndex + 1]) {

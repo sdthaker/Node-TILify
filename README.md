@@ -57,7 +57,7 @@ npm run start
 - `node src/index.js ./examples` - To read txt files from a directory and generate html from it to be stored in `./til` directory
 - `node src/index.js input.txt -o collection` / `node src/index.js input.txt -output collection` - To read a txt file and generate html from it to be stored in `./collection` directory
 - `node src/index.js ./examples -o collection` / `node src/index.js ./examples --output collection` - To read txt files from a directory and generate html from it to be stored in `./collection` directory
-- `node src/index.js --config path_to_your_config.toml` - To utilize your configuration file settings for conversion.
+- `node src/index.js --config path_to_your_config.toml` / `node src/index.js -c path_to_your_config.toml`- To utilize your configuration file settings for conversion.
 
 # Usages / Examples (with Output)
 
