@@ -12,12 +12,6 @@ function readAndParseTomlConfig(filePath) {
     }
 }
 
-//Checking if the directory exists and if not, create it
-function checkAndCreateDirectory(dirPath) {
-  if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true });
-  }
-}
 
 function sanitizeInputCommand(args) {
   let pathToInputFileOrDir = args[0];
