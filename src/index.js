@@ -1,36 +1,36 @@
-import { sanitizeInputCommand , readAndParseTomlConfig} from './utils/helper.js';
+import {
+  sanitizeInputCommand,
+  readAndParseTomlConfig,
+} from './utils/helper.js';
 import fs from 'fs';
 let args = process.argv.slice(2);
 
 // Check for config flag
-const configFlagIndex = args.findIndex(arg => arg === '-c' || arg === '--config');
+const configFlagIndex = args.findIndex(
+  (arg) => arg === '-c' || arg === '--config'
+);
 
-//These lines check if the user has given the `-c` or `--config` flag followed by a file path.
+//Check if user has passed `-c` or `--config` flag followed by a file path.
 if (configFlagIndex !== -1 && args[configFlagIndex + 1]) {
-  //If yes, they save that path in `configFile`.
-    const configFile = args[configFlagIndex + 1];
-    
-    if (!fs.existsSync(configFile)) {
-        console.error('Configuration file not found:', configFile);
-        process.exit(-1);
-    }
-    
-    const config = readAndParseTomlConfig(configFile);
+  const configFilePath = args[configFlagIndex + 1];
 
+  if (!fs.existsSync(configFilePath)) {
+    console.error('Configuration file not found:', configFilePath);
+    process.exit(-1);
+  }
 
-    // Check for version flag within the TOML config file
-    if (config.version === true) {
+  const config = readAndParseTomlConfig(configFilePath);
 
-        console.log('Name: node-tilify');
-        console.log('Version: 0.1');
-        process.exit(0);
-      
-      }
-     
+  // Check for version flag within the TOML config file
+  if (config.version === true) {
+    console.log('Name: node-tilify');
+    console.log('Version: 0.1');
+    process.exit(0);
+  }
 
-    // Check for help flag within the TOML config file
-    if (config.help === true) {
-     console.log(
+  // Check for help flag within the TOML config file
+  if (config.help === true) {
+    console.log(
       `This program is a Today I Learned tool where you pass a text file or directory of text files which converts them to HTML files.
       
       It has the following commands:
@@ -49,16 +49,14 @@ if (configFlagIndex !== -1 && args[configFlagIndex + 1]) {
        node src/index.js -c path_to_your_config.toml or node src/index.js --config path_to_your_config.toml
       `
     );
-      process.exit(0);
-  }
-    
-    const inputPath = config.input || '';
-    const outputPath = config.output || './til';
-    const version = config.version || false;
-    sanitizeInputCommand([inputPath, '-o', outputPath]);
     process.exit(0);
-}
+  }
 
+  const inputPath = config.input || '';
+  const outputPath = config.output || './til';
+  sanitizeInputCommand([inputPath, '-o', outputPath]);
+  process.exit(0);
+}
 
 // User has not provided at least 1 command.
 if (args.length === 0) {

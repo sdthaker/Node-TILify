@@ -4,21 +4,19 @@ import path from 'path';
 import toml from 'toml';
 
 function readAndParseTomlConfig(filePath) {
-    try {
-        const content = fs.readFileSync(filePath, 'utf-8');
-        return toml.parse(content);
-    } catch (err) {
-        console.error('Error reading or parsing TOML file');
-        process.exit(-1);
-    }
+  try {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    return toml.parse(content);
+  } catch (err) {
+    console.error('Error reading or parsing TOML file');
+    process.exit(-1);
+  }
 }
-
 
 function sanitizeInputCommand(args) {
   let pathToInputFileOrDir = args[0];
   let outputCommand = args[1];
   let pathToOutputDir = args[2];
-
 
   // Path is valid input file or directory
   if (pathToInputFileOrDir && fs.existsSync(pathToInputFileOrDir)) {

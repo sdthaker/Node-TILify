@@ -1,4 +1,4 @@
-import {extractFileNameFromPath, outputHTMLToDir } from './helper.js';
+import { extractFileNameFromPath, outputHTMLToDir } from './helper.js';
 import fs from 'fs';
 
 function generateHTMLForFile(inputFile, pathToOutputDir) {
