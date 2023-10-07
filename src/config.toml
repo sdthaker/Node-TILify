@@ -1,11 +1,20 @@
 # This is a sample TOML configuration file
-input = "./src"
+input = "./examples"
 
 # Output directory where generated files will be saved
 output = "./build"
+
+
 
 # Stylesheet URL
 stylesheet = "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
 
 # Language setting
 lang = "fr"
+
+
+#version
+version = false
+
+#help
+help = false

@@ -7,7 +7,7 @@ function readAndParseTomlConfig(filePath) {
         const content = fs.readFileSync(filePath, 'utf-8');
         return toml.parse(content);
     } catch (err) {
-        console.error('Error reading or parsing TOML file:', err);
+        console.error('Error reading or parsing TOML file');
         process.exit(-1);
     }
 }
