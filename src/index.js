@@ -1,6 +1,8 @@
 import {
   sanitizeInputCommand,
   readAndParseTomlConfig,
+  printVersionAndProgramName,
+  printHelpMenu,
 } from './utils/helper.js';
 import fs from 'fs';
 let args = process.argv.slice(2);
@@ -23,33 +25,12 @@ if (configFlagIndex !== -1 && args[configFlagIndex + 1]) {
 
   // Check for version flag within the TOML config file
   if (config.version === true) {
-    console.log('Name: node-tilify');
-    console.log('Version: 0.1');
-    process.exit(0);
+    printVersionAndProgramName();
   }
 
   // Check for help flag within the TOML config file
   if (config.help === true) {
-    console.log(
-      `This program is a Today I Learned tool where you pass a text file or directory of text files which converts them to HTML files.
-      
-      It has the following commands:
-      -v, --version: Outputs the name of the program & version number.
-      -h, --help: Outputs the help menu.
-      -o, --output: The output directory (Optional).
-      -c, --config: Specify path to a TOML-based config file.
-  
-      The files will be saved in './til' folder by default located in the current directory. 
-      You can change the output folder by using -o or --output command.
-  
-      For example, to generate multiple HTML files from a directory with your preferred output directory run:
-      node src/index.js ./path/to/directory -o ./path/to/output
-  
-      To utilize a configuration file for conversions, use:
-       node src/index.js -c path_to_your_config.toml or node src/index.js --config path_to_your_config.toml
-      `
-    );
-    process.exit(0);
+    printHelpMenu();
   }
 
   const inputPath = config.input || '';
@@ -70,44 +51,11 @@ let command = args[0];
 
 // User has provided a valid version command. Output the name of the program & version number.
 if (command === '-v' || command === '--version') {
-  // Read JSON file
-  fs.readFile('./package.json', 'utf-8', (err, data) => {
-    if (err) {
-      console.error(
-        'An error occured while obtaining name and version of the tool: ',
-        err
-      );
-      process.exit(-1);
-    }
-
-    const packageJson = JSON.parse(data);
-    console.log('Name: ', packageJson.name);
-    console.log('Version: ', packageJson.version);
-  });
-  process.exit(0);
+  printVersionAndProgramName();
 }
 // User has provided a valid help command. Output the help menu.
 else if (command === '-h' || command === '--help') {
-  console.log(
-    `This program is a Today I Learned tool where you pass a text file or directory of text files which converts them to HTML files.
-    
-    It has the following commands:
-    -v, --version: Outputs the name of the program & version number.
-    -h, --help: Outputs the help menu.
-    -o, --output: The output directory (Optional).
-    -c, --config: Specify path to a TOML-based config file.
-
-    The files will be saved in './til' folder by default located in the current directory. 
-    You can change the output folder by using -o or --output command.
-
-    For example, to generate multiple HTML files from a directory with your preferred output directory run:
-    node src/index.js ./path/to/directory -o ./path/to/output
-
-    To utilize a configuration file for conversions, use:
-     node src/index.js -c path_to_your_config.toml or node src/index.js --config path_to_your_config.toml
-    `
-  );
-  process.exit(0);
+  printHelpMenu();
 }
 // User has provided a valid input command. Sanitize the input command.
 else {
