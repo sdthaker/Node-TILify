@@ -18,32 +18,19 @@ if (configFlagIndex !== -1 && args[configFlagIndex + 1]) {
     const config = readAndParseTomlConfig(configFile);
 
 
+    // Check for version flag within the TOML config file
     if (config.version === true) {
-      
-      //I tried to reuse the logic for the version command from the original code, but it didn't work.
-      // fs.readFile('./package.json', 'utf-8', (err, data) => {
-      //   if (err) {
-      //     console.error(
-      //       'An error occured while obtaining name and version of the tool: ',
-      //       err
-      //     );
-      //     process.exit(-1);
-      //   }
-    
-      //   const packageJson = JSON.parse(data);
-  
-        // Check for version or help flag within the TOML config file
-     
+
         console.log('Name: node-tilify');
         console.log('Version: 0.1');
         process.exit(0);
-      //});
       
       }
      
 
-  if (config.help === true) {
-    console.log(
+    // Check for help flag within the TOML config file
+    if (config.help === true) {
+     console.log(
       `This program is a Today I Learned tool where you pass a text file or directory of text files which converts them to HTML files.
       
       It has the following commands:
@@ -67,7 +54,7 @@ if (configFlagIndex !== -1 && args[configFlagIndex + 1]) {
     
     const inputPath = config.input || '';
     const outputPath = config.output || './til';
-    const version = config.version || true;
+    const version = config.version || false;
     sanitizeInputCommand([inputPath, '-o', outputPath]);
     process.exit(0);
 }
