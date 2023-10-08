@@ -14,21 +14,18 @@ function readAndParseTomlConfig(filePath) {
 }
 
 function printVersionAndProgramName() {
-  // Read JSON file
-  fs.readFile('../../package.json', 'utf-8', (err, data) => {
-    if (err) {
-      console.error(
-        'An error occured while obtaining name and version of the tool: ',
-        err
-      );
-      process.exit(-1);
-    }
-
-    const packageJson = JSON.parse(data);
+  try {
+    // Read JSON file
+    const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
     console.log('Name: ', packageJson.name);
     console.log('Version: ', packageJson.version);
-  });
-  process.exit(0);
+  } catch (err) {
+    console.error(
+      'An error occurred while reading the package.json file: ',
+      err
+    );
+    process.exit(-1);
+  }
 }
 
 function printHelpMenu() {
