@@ -45,8 +45,9 @@ npm run start
 - Passing `-v` or `--version` command prints version and name of the tool.
 - <ins>_Optional Feature #2_</ins>: Passing `-o` or `--output` command followed by an output directory path, stores all the generated HTML files to that directory. If no directory exists, it'll create one. It overwrites the content of the files that match with the input file or directory of files and creates a new file if it doesn't exist in the output directory.
 - Name of the generated html file is the same as name of txt file.
-- Supports Markdown syntax.
-- Auto-detect and convert Markdown syntax to HTML.
+- Converts Markdown horizontal lines to HTML horizontal lines.
+- Converts Markdown links to HTML links.
+- Converts Markdown images to HTML images.
 - **TOML Configuration**: Instead of repeatedly passing in command-line arguments, you can now set your preferences in a TOML configuration file. Use the `-c` or `--config` flags followed by the path to your TOML configuration file.
 
 # Usages / Examples
