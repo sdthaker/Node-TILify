@@ -19,6 +19,7 @@ function printVersionAndProgramName() {
     const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
     console.log('Name: ', packageJson.name);
     console.log('Version: ', packageJson.version);
+    process.exit(0);
   } catch (err) {
     console.error(
       'An error occurred while reading the package.json file: ',
