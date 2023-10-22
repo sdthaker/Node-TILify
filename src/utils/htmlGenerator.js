@@ -89,7 +89,7 @@ function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
   let currentLine = '';
   let bodyArrWithHTMLTags = [];
   // Regex to match http links
-  const mdLinkGroupRegex = /\[([^\]]+)\]\(([^\)]+)\)/;
+  const mdBlobRegex = /(\!?)\[([^\]]+)\]\(([^\)]+)\)/;
 
   // Loop through bodyArr and add <p> tags to each line
   for (let i = 0; i < bodyArr.length; i++) {
@@ -103,19 +103,28 @@ function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
         bodyArr[i + 1] === '' ||
         bodyArr[i] === '---'
       ) {
-        const mdLinks = bodyArr[i].match(new RegExp(mdLinkGroupRegex, 'g'));
+        const mdBlobs = bodyArr[i].match(new RegExp(mdBlobRegex, 'g'));
 
-        if (mdLinks && mdLinks.length > 0) {
-          mdLinks.forEach((link) => {
-            const linkGroup = link.match(mdLinkGroupRegex);
+        if (mdBlobs && mdBlobs.length > 0) {
+          mdBlobs.forEach((blob) => {
+            const blobGroup = blob.match(mdBlobRegex);
 
-            if (linkGroup) {
-              const [mdLink, mdText, mdURL] = linkGroup;
-              // Replace http links with <a> tags
-              bodyArr[i] = bodyArr[i].replace(
-                mdLink,
-                `<a href="${mdURL}" target="_blank">${mdText}</a>`
-              );
+            if (blobGroup) {
+              const [mdPhrase, mdDelimiter, mdAltText, mdURL] = blobGroup;
+
+              if (mdDelimiter === '!') {
+                // Replace md image with <img> tags
+                bodyArr[i] = bodyArr[i].replace(
+                  mdPhrase,
+                  `<img src="${mdURL}" alt="${mdAltText}" width=150 height=150 >`
+                );
+              } else {
+                // Replace md links with <a> tags
+                bodyArr[i] = bodyArr[i].replace(
+                  mdPhrase,
+                  `<a href="${mdURL}" target="_blank">${mdAltText}</a>`
+                );
+              }
             }
           });
         }
