@@ -49,3 +49,7 @@ To lint the entire project and check for errors/warnings, run the following comm
 ```bash
 npm run lint
 ```
+
+## Pre-Commit Hook
+
+The project is setup to run prettier & eslint before every commit using Husky and Lint-Staged.
