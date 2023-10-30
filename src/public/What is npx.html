@@ -1,10 +1,90 @@
-<!DOCTYPE html>
-    <html lang="en-us">
-    <head>
-      <meta charset="utf-8">
-      <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css>
-      <title>What is npx?</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-    <h1>What is npx?</h1><p>You may have heard of npm, but what about npx? </p><h2>What is npx</h2><p>npx is a executable that is bundled with npm@5.2.0 and above.</p><p>It makes running binaries from packages installed in your node projects much simpler!</p><p>To try npx out, just type npx {binaryName}. npx will start by checking your project’s local node_modules/.bin folder for the specified binaryName, and if it doesn’t find it there, it will move to your global installs.</p><p>If the binary isn’t found on your machine anywhere, it will install the latest version in a one off install, use it, then throw the install away! This way you don’t have to worry about polluting your global scopes with packages that you use once in a blue moon (like create-react-app for example).</p><p>Similar to one off scripts above, you can point npx to a remote javascript file via the url, and npx will download it and execute it for you.</p><p>For example:</p><p>npx <a href="https://gist.github.com/bambielli/8d7cb891423def24e643ac5be174bd03" target="_blank">https://gist.github.com/bambielli/8d7cb891423def24e643ac5be174bd03</a></p><p>should log the secret is: npx rox to your console</p><p>Always be careful when executing remote files that you do not own… be sure to read through them to make sure there isn’t any malicious code in there.</p><h2>Use case for npx</h2><p>This week at work I was using the sequelize-cli package to automate the execution of migrations and seed data for a hackathon project.</p><p>The binary was installed locally to my project under node_modules/.bin/sequelize, and the readme for sequelize-cli instructed to execute the binary by typing that full path before each command.</p><p>My first instinct was to turn this into an npm script, which I did:</p><p>package.json</p><p>{  "scripts": {    "db:migrate" 'node_modules/.bin/sequelize db:migrate'  }}</p><p>I could run this script by typing npm run db:migrate, which is already pretty easy.</p><p>npx made life even easier, though: when I wanted to seed my database, I just ran npx sequelize db:seed from my command line, without needing to create a new npm script for seeding. Easy as that! No more typing the full node_modules path to your project binaries, or bloating your package.json with npm scripts that are shortcuts for project binaries.</p><p>Source: <a href="https://bambielli.com/til/2018-10-06-npx/" target="_blank">https://bambielli.com/til/2018-10-06-npx/</a></p></body></html>
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+    />
+    <title>What is npx?</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+  </head>
+  <body>
+    <h1>What is npx?</h1>
+    <p>You may have heard of npm, but what about npx?</p>
+    <h2>What is npx</h2>
+    <p>npx is a executable that is bundled with npm@5.2.0 and above.</p>
+    <p>
+      It makes running binaries from packages installed in your node projects
+      much simpler!
+    </p>
+    <p>
+      To try npx out, just type npx {binaryName}. npx will start by checking
+      your project’s local node_modules/.bin folder for the specified
+      binaryName, and if it doesn’t find it there, it will move to your global
+      installs.
+    </p>
+    <p>
+      If the binary isn’t found on your machine anywhere, it will install the
+      latest version in a one off install, use it, then throw the install away!
+      This way you don’t have to worry about polluting your global scopes with
+      packages that you use once in a blue moon (like create-react-app for
+      example).
+    </p>
+    <p>
+      Similar to one off scripts above, you can point npx to a remote javascript
+      file via the url, and npx will download it and execute it for you.
+    </p>
+    <p>For example:</p>
+    <p>
+      npx
+      <a
+        href="https://gist.github.com/bambielli/8d7cb891423def24e643ac5be174bd03"
+        target="_blank"
+        >https://gist.github.com/bambielli/8d7cb891423def24e643ac5be174bd03</a
+      >
+    </p>
+    <p>should log the secret is: npx rox to your console</p>
+    <p>
+      Always be careful when executing remote files that you do not own… be sure
+      to read through them to make sure there isn’t any malicious code in there.
+    </p>
+    <h2>Use case for npx</h2>
+    <p>
+      This week at work I was using the sequelize-cli package to automate the
+      execution of migrations and seed data for a hackathon project.
+    </p>
+    <p>
+      The binary was installed locally to my project under
+      node_modules/.bin/sequelize, and the readme for sequelize-cli instructed
+      to execute the binary by typing that full path before each command.
+    </p>
+    <p>My first instinct was to turn this into an npm script, which I did:</p>
+    <p>package.json</p>
+    <p>
+      { "scripts": { "db:migrate" 'node_modules/.bin/sequelize db:migrate' }}
+    </p>
+    <p>
+      I could run this script by typing npm run db:migrate, which is already
+      pretty easy.
+    </p>
+    <p>
+      npx made life even easier, though: when I wanted to seed my database, I
+      just ran npx sequelize db:seed from my command line, without needing to
+      create a new npm script for seeding. Easy as that! No more typing the full
+      node_modules path to your project binaries, or bloating your package.json
+      with npm scripts that are shortcuts for project binaries.
+    </p>
+    <p>
+      Source:
+      <a
+        href="https://bambielli.com/til/2018-10-06-npx/"
+        target="_blank"
+        >https://bambielli.com/til/2018-10-06-npx/</a
+      >
+    </p>
+  </body>
+</html>

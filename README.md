@@ -2,7 +2,7 @@
 
 Welcome to Node-TILify. An open source CLI software that helps you convert a text file or a directory of text file(s) into html file(s) blazingly fast 🏃‍♂️ 💨 ⚡️. The name of the project was chosen to showcase which language/framework was used to build this tool -- _`Node`.js_, what the tool is all about -- _`TIL` - Today I Learned_, & the value that it adds to your workflow -- _Ampl`ify`ing Knowledge_.
 
-# How to use / Installation
+# How to use
 
 Make sure [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is installed on your system. Also, make sure you have latest [node](https://nodejs.org/en/download) installed on your computer.
 
@@ -12,24 +12,16 @@ To install this program, first clone the repository by running:
 git clone https://github.com/sdthaker/Node-TILify.git
 ```
 
-To make sure node & npm are installed on your system, run:
+Then run the following command from root directory to install the dependencies:
 
 ```bash
-node -v
-npm -v
+npm install
 ```
 
 You can now run the program from the cloned repository's terminal to see how to use this tool:
 
 ```bash
 node src/index.js -h
-```
-
-_Optional_ - If you'd like to spin up a node server, open a terminal inside of the cloned repository, and install the node dependencies & spin up the server by running:
-
-```bash
-npm install
-npm run start
 ```
 
 # Features
@@ -120,6 +112,7 @@ partial output of `output/Kubernetes101.html`
 
      <p>Kubernetes is a container orchestration system: in other words, it provides the necessary components for configuring, deploying and scaling images that are built with Docker.</p>
 ```
+
 ## Configuration Using TOML
 
 Now with TOML configuration support, streamline your repetitive tasks by setting your configurations just once!

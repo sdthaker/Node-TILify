@@ -89,7 +89,7 @@ function generateHTMLForMdFile(inputFile, pathToOutputDir, lines) {
   let currentLine = '';
   let bodyArrWithHTMLTags = [];
   // Regex to match http links
-  const mdBlobRegex = /(\!?)\[([^\]]+)\]\(([^\)]+)\)/;
+  const mdBlobRegex = /(!?)\[([^\]]+)\]\(([^)]+)\)/;
 
   // Loop through bodyArr and add <p> tags to each line
   for (let i = 0; i < bodyArr.length; i++) {
@@ -166,7 +166,7 @@ function generateHTMLHeadForFile(fileType, title) {
       return `
         <head>
           <meta charset="utf-8">
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
           ${titleTag}
           <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>`;
@@ -174,7 +174,7 @@ function generateHTMLHeadForFile(fileType, title) {
       return `
         <head>
           <meta charset="utf-8">
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
           <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>`;
     default:
