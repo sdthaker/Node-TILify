@@ -1,4 +1,7 @@
-import { readAndParseTomlConfig } from '../src/utils/helper';
+import {
+  readAndParseTomlConfig,
+  printVersionAndProgramName,
+} from '../src/utils/helper';
 
 afterEach(() => {
   jest.restoreAllMocks();
@@ -57,5 +60,21 @@ describe('readAndParseTomlConfig', () => {
       'Error reading or parsing TOML file'
     );
     expect(mockExit).toHaveBeenCalledWith(-1);
+  });
+});
+
+describe(' printVersionAndProgramName', () => {
+  it('function should print the name of the program & version number', () => {
+    const mockStdOut = jest
+      .spyOn(global.console, 'log')
+      .mockImplementation(() => {});
+
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    printVersionAndProgramName();
+
+    expect(mockStdOut).toHaveBeenCalledWith('Name: ', 'node-tilify');
+    expect(mockStdOut).toHaveBeenCalledWith('Version: ', '0.1');
+    expect(mockExit).toHaveBeenCalledWith(0);
   });
 });
