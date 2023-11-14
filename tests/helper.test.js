@@ -1,6 +1,7 @@
 import {
   readAndParseTomlConfig,
   printVersionAndProgramName,
+  printHelpMenu,
 } from '../src/utils/helper';
 
 afterEach(() => {
@@ -75,6 +76,39 @@ describe(' printVersionAndProgramName', () => {
 
     expect(mockStdOut).toHaveBeenCalledWith('Name: ', 'node-tilify');
     expect(mockStdOut).toHaveBeenCalledWith('Version: ', '0.1');
+    expect(mockExit).toHaveBeenCalledWith(0);
+  });
+});
+
+describe('printHelpMenu', () => {
+  it('function should print the help menu', () => {
+    const mockStdOut = jest
+      .spyOn(global.console, 'log')
+      .mockImplementation(() => {});
+
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    printHelpMenu();
+
+    expect(mockStdOut).toHaveBeenCalledWith(
+      `This program is a Today I Learned tool where you pass a text file or directory of text files which converts them to HTML files.
+      
+      It has the following commands:
+      -v, --version: Outputs the name of the program & version number.
+      -h, --help: Outputs the help menu.
+      -o, --output: The output directory (Optional).
+      -c, --config: Specify path to a TOML-based config file.
+  
+      The files will be saved in './til' folder by default located in the current directory. 
+      You can change the output folder by using -o or --output command.
+  
+      For example, to generate multiple HTML files from a directory with your preferred output directory run:
+      node src/index.js ./path/to/directory -o ./path/to/output
+  
+      To utilize a configuration file for conversions, use:
+       node src/index.js -c path_to_your_config.toml or node src/index.js --config path_to_your_config.toml
+      `
+    );
     expect(mockExit).toHaveBeenCalledWith(0);
   });
 });
