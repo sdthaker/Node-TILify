@@ -2,6 +2,7 @@ import {
   readAndParseTomlConfig,
   printVersionAndProgramName,
   printHelpMenu,
+  checkArgs,
 } from '../src/utils/helper';
 
 afterEach(() => {
@@ -110,5 +111,21 @@ describe('printHelpMenu', () => {
       `
     );
     expect(mockExit).toHaveBeenCalledWith(0);
+  });
+});
+
+describe('checkArgs', () => {
+  it('function should exit with error message & exit code -1 with array with 0 length', () => {
+    const mockStdErr = jest
+      .spyOn(global.console, 'error')
+      .mockImplementation(() => {});
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    checkArgs([]);
+
+    expect(mockStdErr).toHaveBeenCalledWith(
+      'Please provide a command! Run the program with --help / -h for more information.'
+    );
+    expect(mockExit).toHaveBeenCalledWith(-1);
   });
 });
