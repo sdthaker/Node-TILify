@@ -3,6 +3,7 @@ import {
   readAndParseTomlConfig,
   printVersionAndProgramName,
   printHelpMenu,
+  checkArgs,
 } from './utils/helper.js';
 import fs from 'fs';
 let args = process.argv.slice(2);
@@ -39,13 +40,7 @@ if (configFlagIndex !== -1 && args[configFlagIndex + 1]) {
   process.exit(0);
 }
 
-// User has not provided at least 1 command.
-if (args.length === 0) {
-  console.error(
-    'Please provide a command! Run the program with --help / -h for more information.'
-  );
-  process.exit(-1);
-}
+checkArgs(args);
 
 let command = args[0];
 

@@ -142,6 +142,16 @@ function outputHTMLToDir(pathToOutputDir, htmlContent, fileName) {
   fs.writeFileSync(`${pathToOutputDir}/${fileName}`, htmlContent);
 }
 
+function checkArgs(args) {
+  // User has not provided at least 1 command.
+  if (args.length === 0) {
+    console.error(
+      'Please provide a command! Run the program with --help / -h for more information.'
+    );
+    process.exit(-1);
+  }
+}
+
 export {
   sanitizeInputCommand,
   extractFileNameFromPath,
@@ -149,4 +159,5 @@ export {
   readAndParseTomlConfig,
   printVersionAndProgramName,
   printHelpMenu,
+  checkArgs,
 };
