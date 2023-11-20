@@ -76,7 +76,7 @@ describe(' printVersionAndProgramName', () => {
     printVersionAndProgramName();
 
     expect(mockStdOut).toHaveBeenCalledWith('Name: ', 'node-tilify');
-    expect(mockStdOut).toHaveBeenCalledWith('Version: ', '1.0.2');
+    expect(mockStdOut).toHaveBeenCalledWith('Version: ', '1.0.3');
     expect(mockExit).toHaveBeenCalledWith(0);
   });
 });
