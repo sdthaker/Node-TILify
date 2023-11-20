@@ -2,26 +2,20 @@
 
 Welcome to Node-TILify. An open source CLI software that helps you convert a text file or a directory of text file(s) into html file(s) blazingly fast 🏃‍♂️ 💨 ⚡️. The name of the project was chosen to showcase which language/framework was used to build this tool -- _`Node`.js_, what the tool is all about -- _`TIL` - Today I Learned_, & the value that it adds to your workflow -- _Ampl`ify`ing Knowledge_.
 
-# How to use
+# How to install
 
-Make sure [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is installed on your system. Also, make sure you have latest [node](https://nodejs.org/en/download) installed on your computer.
+Make sure you have latest [node](https://nodejs.org/en/download) installed on your computer.
 
-To install this program, first clone the repository by running:
+To install this program globally on your machine, run the command:
 
 ```bash
-git clone https://github.com/sdthaker/Node-TILify.git
+npm i -g node-tilify
 ```
 
-Then run the following command from root directory to install the dependencies:
+You can now run the program to see how to use this tool:
 
 ```bash
-npm install
-```
-
-You can now run the program from the cloned repository's terminal to see how to use this tool:
-
-```bash
-node src/index.js -h
+node-tilify -h
 ```
 
 # Features
@@ -44,13 +38,13 @@ node src/index.js -h
 
 # Usages / Examples
 
-- `node src/index.js -h` / `node src/index.js --help` - To print help menu
-- `node src/index.js -v` / `node src/index.js --version` - To print version and name of the tool
-- `node src/index.js input.txt` - To read txt file and generate html from it to be stored in `./til` directory
-- `node src/index.js ./examples` - To read txt files from a directory and generate html from it to be stored in `./til` directory
-- `node src/index.js input.txt -o collection` / `node src/index.js input.txt -output collection` - To read a txt file and generate html from it to be stored in `./collection` directory
-- `node src/index.js ./examples -o collection` / `node src/index.js ./examples --output collection` - To read txt files from a directory and generate html from it to be stored in `./collection` directory
-- `node src/index.js --config path_to_your_config.toml` / `node src/index.js -c path_to_your_config.toml`- To utilize your configuration file settings for conversion.
+- `node-tilify -h` / `node-tilify --help` - To print help menu
+- `node-tilify -v` / `node-tilify --version` - To print version and name of the tool
+- `node-tilify input.txt` - To read txt file and generate html from it to be stored in `./til` directory
+- `node-tilify ./examples` - To read txt files from a directory and generate html from it to be stored in `./til` directory
+- `node-tilify input.txt -o collection` / `node-tilify input.txt -output collection` - To read a txt file and generate html from it to be stored in `./collection` directory
+- `node-tilify ./examples -o collection` / `node-tilify ./examples --output collection` - To read txt files from a directory and generate html from it to be stored in `./collection` directory
+- `node-tilify --config path_to_your_config.toml` / `node-tilify -c path_to_your_config.toml`- To utilize your configuration file settings for conversion.
 
 # Usages / Examples (with Output)
 
@@ -59,7 +53,7 @@ To generate multiple HTML files from a directory with your preferred output dire
 Command Line:
 
 ```bash
-sohamthaker@Sohams-MacBook-Pro Node-TILify % node src/index.js examples -o output
+sohamthaker@Sohams-MacBook-Pro Node-TILify % node-tilify examples -o output
 HTML files generated successfully stored at output!
 ```
 
@@ -121,16 +115,24 @@ Now with TOML configuration support, streamline your repetitive tasks by setting
 
 1. Create a `.toml` file with your desired configuration. Here's an example format:
 
-```toml
-# This is a sample TOML configuration file
-input = "./src"
+> ```toml
+> # This is a sample TOML configuration file
+> input = "./src"
+>
+> # Output directory where generated files will be saved
+> output = "./build"
+>
+> # Stylesheet URL
+> stylesheet = "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+>
+> # Language setting
+> lang = "fr"
+> ```
 
-# Output directory where generated files will be saved
-output = "./build"
+2. Run the following command:
 
-# Stylesheet URL
-stylesheet = "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+> ```bash
+> node-tilify -c path_to_your_config.toml
+> ```
 
-# Language setting
-lang = "fr"
-```
+3. That's it! Your files will be generated in the output directory you specified in your configuration file.
